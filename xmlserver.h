@@ -13,6 +13,11 @@ private:
     ExcelBase m_excelBase;
 public:
     XmlServer();
+    enum Mode {
+        DataToExcel,
+        DataToTS,
+        Default = 65536
+    };
 
     void setDataToExcel(QString strTsFilePath, QString strExcelFilePath);
     void setDataToXml(QString strExcelFilePath, QString strTsFilePath, QString setOutTsFile);
@@ -27,6 +32,7 @@ public:
     QFile currentXmlFile;
     QXmlStreamReader xmlReader;
     QXmlStreamWriter xmlWriter;
+    Mode mode;
 };
 
 #endif // XMLSERVER_H

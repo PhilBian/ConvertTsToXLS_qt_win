@@ -26,30 +26,22 @@ Dialog::~Dialog()
     delete ui;
 }
 
-
-
-
 void Dialog::on_btnWriteExcel_clicked()
 {
     QString tsFilePath = this->ui->leFilePath->text();
     QString excelFileName = this->ui->leExcelPath->text();
 
     QString errStr;
-    if(tsFilePath.isEmpty() || excelFileName.isEmpty())
-    {
-        errStr = tr("����ѡ��TS�ļ���");
-
-    }
 
     if(tsFilePath.isEmpty() || excelFileName.isEmpty())
     {
-        errStr = tr("������дExcel�ļ�����");
+        errStr = tr("One or more files do not exist");
 
     }
 
     if(!errStr.isEmpty())
     {
-        QMessageBox::information(this, tr("����"), errStr, QMessageBox::Yes);
+        QMessageBox::information(this, tr("One or more files do not exist"), errStr, QMessageBox::Yes);
         return;
     }
 
@@ -60,20 +52,20 @@ void Dialog::on_btnWriteExcel_clicked()
     qDebug()<<"tsFile"<<tsFilePath;
 
 
-    ui->lbProcess->setText(tr("����д��Excel����..."));
+    ui->lbProcess->setText(tr("Start setting data to excel"));
     qApp->processEvents();
     qDebug()<<"excelFilePath"<<excelFilePath;
 
     m_pXmlServer->setDataToExcel(tsFilePath, excelFilePath);
-    ui->lbProcess->setText(tr("д������!"));
+    ui->lbProcess->setText(tr("Data set finished"));
     ui->leExcelPath->setText(excelFilePath);
 }
 
 void Dialog::on_btnChooseFile_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("ѡ��TS�ļ�"),
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Select TS file"),
                                                     QApplication::applicationDirPath(),
-                                                     tr("TS (*.ts);;�����ļ�(*.*)"));
+                                                     tr("TS (*.ts);;All files(*.*)"));
     if(!fileName.isEmpty())
     {
         ui->leFilePath->setText(fileName);
@@ -87,8 +79,8 @@ void Dialog::on_btnWriteCancel_clicked()
 
 void Dialog::on_btnExcelSource_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("ѡ��Excel�ļ�"),QApplication::applicationDirPath(),
-                                                    tr("Excel (*.xlsx *.xls);;�����ļ�(*.*)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Select Excel file"),QApplication::applicationDirPath(),
+                                                    tr("Excel (*.xlsx *.xls);;All files(*.*)"));
     if(!fileName.isEmpty())
     {
         ui->leInExcel->setText(fileName);
@@ -102,9 +94,9 @@ void Dialog::on_btnCancel_clicked()
 
 void Dialog::on_btnTsOut_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("ѡ��TS�ļ�"),
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Select TS file"),
                                                     QApplication::applicationDirPath(),
-                                                     tr("TS (*.ts);;�����ļ�(*.*)"));
+                                                     tr("TS (*.ts);;All files(*.*)"));
     if(!fileName.isEmpty())
     {
         ui->leInTs->setText(fileName);
@@ -125,16 +117,13 @@ void Dialog::on_btnWriteTs_clicked()
         return; //test --
     }
 
-
     QString outTsPath(inTs);
     int index = outTsPath.lastIndexOf("/");
     outTsPath.resize(index + 1);
     outTs.insert(0, outTsPath);
-
-//    QFile::copy(inTs, outTs);
-//    inExcel = "C:/Users/Biantf/Desktop/123.xls"; //test ++
-//    outTs = "C:/Users/Biantf/Desktop/test.ts"; // test ++
+    ui->lblGetProcess->setText("Start setting data to TS");
     qDebug()<<inExcel<<inTs<<outTs;
     m_pXmlServer->setDataToXml(inExcel, inTs, outTs);
-
+    ui->lblGetProcess->setText("Data set finished");
+    ui->leOutTsName->setText(outTs);
 }

@@ -7,7 +7,7 @@
 QT          += core gui
 QT          += xml
 CONFIG  += qaxcontainer
-#CONFIG  += console
+CONFIG  += console
 
 TARGET = changelang
 TEMPLATE = app

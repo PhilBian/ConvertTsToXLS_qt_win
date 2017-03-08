@@ -14,38 +14,44 @@ XmlServer::XmlServer()
 {
     m_iRecordCount = 0;
     m_iCurrentCount = 0;
+    mode = Default;
 }
 
 bool XmlServer::getXmlObject(QString filePath)
 {
-    //    QFile file(filePath);
-    //    currentXmlFile.setFileName(filePath);
-    //    if(!currentXmlFile.open(QIODevice::ReadWrite | QIODevice::Truncate))
-    //    {
-    //        currentXmlFile.close();
-    //        return false;
-    //    }
-
-    //    if(!m_domDocument.setContent(&currentXmlFile))
-    //    {
-    //        currentXmlFile.close();
-    //        return false;
-    //    }
-    //    //currentXmlFile.close();
-    //    return true;
     currentXmlFile.setFileName(filePath);
-    if(!currentXmlFile.open(QIODevice::ReadWrite)) {
-        qDebug()<<"getXmlObject error";
-        currentXmlFile.close();
-        return false;
+    if(mode == DataToExcel) {
+        if(!currentXmlFile.open(QIODevice::ReadWrite))
+        {
+            qDebug()<<"getXmlObject error\tmode = "<<mode;
+            currentXmlFile.close();
+            return false;
+        }
+
+        if(!m_domDocument.setContent(&currentXmlFile))
+        {
+            qDebug()<<"m_domDocument.setContent error\tmode = "<<mode;
+            currentXmlFile.close();
+            return false;
+        }
+        //currentXmlFile.close();
     }
-    xmlReader.setDevice(&currentXmlFile);
-    qDebug()<<"Open "<<filePath<<" success";
+    else if(mode == DataToTS) {
+        if(!currentXmlFile.open(QIODevice::ReadWrite)) {
+            qDebug()<<"getXmlObject error\tmode = "<<mode;
+            currentXmlFile.close();
+            return false;
+        }
+        xmlReader.setDevice(&currentXmlFile);
+        qDebug()<<"Open "<<filePath<<" success";
+    }
+    mode = Default;
     return true;
 }
 
 void XmlServer::setDataToExcel(QString strTsFilePath, QString strExcelFilePath)
 {
+    mode = DataToExcel;
     QString filePath = strTsFilePath;
     m_iRecordCount = 0;
     if(!getXmlObject(filePath))
@@ -119,6 +125,7 @@ bool XmlServer::getExcelObject(QString filePath)
 void XmlServer::setDataToXml(QString strExcelFilePath, QString strTsFilePath, QString setOutTsFile)
 {
     //QString filePath = strExcelFilePath;
+    mode = DataToTS;
     if(!getExcelObject(strExcelFilePath)) //m_excelBase
     {
         return;
