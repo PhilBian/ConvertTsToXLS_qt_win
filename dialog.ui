@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>559</width>
+    <height>449</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>写入Excel数据</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>文件(*.ts)：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leFilePath"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnChooseFile">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>选择..</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Excel文件名：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leExcelPath"/>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="btnWriteExcel">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>写入</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnWriteCancel">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>取消</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lbProcess">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>获取Excel数据</string>
+      </attribute>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>50</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Exccel</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="leInExcel">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>60</y>
+         <width>350</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnExcelSource">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>60</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>选择..</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>50</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>复制的TS</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="leInTs">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>110</y>
+         <width>351</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnWriteTs">
+       <property name="geometry">
+        <rect>
+         <x>19</x>
+         <y>260</y>
+         <width>250</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>写入</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCancel">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>260</y>
+         <width>250</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>取消</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnTsOut">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>110</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>选择..</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblGetProcess">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>210</y>
+         <width>500</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>获取数据</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>160</y>
+         <width>50</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>输出的TS</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="leOutTsName">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>160</y>
+         <width>351</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
